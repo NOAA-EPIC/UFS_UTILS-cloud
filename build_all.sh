@@ -21,6 +21,7 @@ source "${DIR_ROOT}/sorc/machine-setup.sh"
 target=${target:-"NULL"}
 compiler=${compiler:-"intelllvm"} # If IntelLLVM is not available on the machine, will
                                   # default to Intel classic.
+compiler=${COMPILER,,:-"${compiler}"}
 
 if [[ "$target" == "linux.*" || "$target" == "macosx.*" ]]; then
   unset -f module

@@ -32,7 +32,13 @@ elif [[ -d /lfs/h1 ]] ; then
     module reset
 elif [[ -d /opt/spack-stack && -v SINGULARITY_CONTAINER ]]; then
     # We are in a container
-    source /usr/lmod/lmod/init/$__ms_shell
+    if [[ -d /usr/lmod/lmod/init ]]; then
+        # we are in Intel container
+        source /usr/lmod/lmod/init/$__ms_shell
+    else
+        # we are in GNU container
+        source /opt/ohpc/admin/lmod/lmod/init/$__ms_shell
+    fi
     target=container
     module purge
 elif [[ -d /scratch3 ]]; then
